@@ -583,16 +583,21 @@ are derived rather than chased with effects.
 ```bash
 npm install
 npm run dev          # http://localhost:3000
+npm run build        # origin comes from .env.production (see Link previews)
 
-# Set at BUILD time so link previews advertise the right origin.
-NEXT_PUBLIC_SITE_URL=https://example.com npm run build
-
-npm run sync:slugs      # TWDB reservoir key -> URL slug
-npm run sync:counties   # Texas county basemap geometry
-npm run sync:flow       # reservoir -> river gage mapping (slow; ~2 NLDI calls/lake)
-npm run sync:usace      # USACE CWMS series for lakes with no USGS gage
-npm run sync:history    # per-lake period-of-record series (slow; 122 downloads)
+npm run sync:slugs        # TWDB reservoir key -> URL slug
+npm run sync:counties     # Texas county basemap geometry
+npm run sync:flow         # reservoir -> river gage mapping (slow; ~2 NLDI calls/lake)
+npm run sync:usace        # USACE CWMS series for lakes with no USGS gage
+npm run sync:history      # per-lake period-of-record series (slow; 122 downloads)
+npm run sync:percentiles  # monthly streamflow percentile thresholds (~60 batches)
+npm run generate:emblem   # not a sync — rebuilds icons from the master emblem PNG
 ```
+
+The `sync:*` scripts write into `src/data/` and `public/history/`, and their
+output is committed. Nothing regenerates at request time, so a stale checkout
+serves stale normals rather than failing — rerun them when gages or reservoirs
+change (yearly is plenty for percentiles and history).
 
 ## Deploying to Cloudflare Workers
 
@@ -649,20 +654,55 @@ account-scoped, so switching accounts means recreating the namespace.
 
 ### Deploy
 
+Pushing to `main` deploys automatically — see **Continuous deployment** below.
+To deploy by hand:
+
 ```bash
-NEXT_PUBLIC_SITE_URL=https://your-domain npm run cf:deploy
+npm run cf:deploy
 ```
 
-Set that variable or shared links unfurl with a `localhost` image URL. If a
-previous build baked in the wrong value, clear `.next` and `.open-next` first —
-Next reuses prerendered output, so the stale origin survives a plain rebuild.
+The origin is no longer passed on the command line: `NEXT_PUBLIC_SITE_URL` lives
+in the committed `.env.production` (build time, for prerendered canonical and
+`og:image` URLs) and in `vars` in `wrangler.jsonc` (runtime, for dynamic routes
+and ISR re-renders). Both are needed — with neither, links unfurl with a
+`localhost` image URL. If a previous build baked in the wrong value, clear
+`.next` and `.open-next` first: Next reuses prerendered output, so a stale
+origin survives a plain rebuild.
 
 `npm run cf:preview` builds and serves the real Worker locally first — use it
 before deploying, since `next dev` runs in Node and will not catch runtime
 incompatibilities. `npm run cf:typegen` regenerates binding types.
 
-For Workers Builds (CI), set `NEXT_PUBLIC_SITE_URL` under **Build variables and
-secrets** — it is needed at build time, not runtime (see Link previews above).
+On Windows, a `workerd` process left behind by a previous `cf:preview` keeps a
+handle on `.open-next/`, and the next build dies with `EPERM ... rm`. Stop the
+process, delete the directory, and rerun.
+
+### Continuous deployment
+
+`.github/workflows/deploy.yml` typechecks, lints and builds every pull request,
+and additionally deploys on a push to `main`. Build and deploy are separate
+steps because `opennextjs-cloudflare deploy` does **not** rebuild — it uploads
+the assets and cache to KV and runs `wrangler deploy` against the bundle the
+build step already produced, so a PR exercises the identical build without
+publishing anything.
+
+Two repository secrets are required:
+
+| Secret | Value |
+| --- | --- |
+| `CLOUDFLARE_API_TOKEN` | Token with **Workers Scripts:Edit** and **Workers KV Storage:Edit** (the "Edit Cloudflare Workers" template covers both) |
+| `CLOUDFLARE_ACCOUNT_ID` | The account that owns the Worker |
+
+```bash
+gh secret set CLOUDFLARE_API_TOKEN      # paste at the prompt; never commit it
+gh secret set CLOUDFLARE_ACCOUNT_ID
+```
+
+The deploy step fails rather than skipping when the token is absent: a green run
+has to mean the site actually shipped. Note the build prerenders pages, which
+fetches TWDB, USGS, NWPS, USDM and CoCoRaHS — an upstream outage can fail a
+build that has nothing wrong with it, and the dashboard in particular fetches
+TWDB without a fallback. Rerun the job.
 
 ### The KV cache is not optional
 
