@@ -680,7 +680,9 @@ process, delete the directory, and rerun.
 ### Continuous deployment
 
 `.github/workflows/deploy.yml` typechecks, lints and builds every pull request,
-and additionally deploys on a push to `main`. Build and deploy are separate
+and additionally deploys on a push to `main` — or on a manual run from the
+Actions tab, which is how you redeploy without a code change. Build and deploy
+are separate
 steps because `opennextjs-cloudflare deploy` does **not** rebuild — it uploads
 the assets and cache to KV and runs `wrangler deploy` against the bundle the
 build step already produced, so a PR exercises the identical build without
