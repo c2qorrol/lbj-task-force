@@ -617,7 +617,7 @@ it is.
 
 `workers.dev` is **disabled**. Note that wrangler turns it off by default as
 soon as `routes` is present unless `"workers_dev": true` is set explicitly, so
-the old `texas-lake-levels.persianpunks.workers.dev` URL now returns 404.
+the old `texas-lake-levels.<account-subdomain>.workers.dev` URL now returns 404.
 
 Canonical tags and `og:url` point at the apex, so `www` serving the same Worker
 is not treated as duplicate content.
