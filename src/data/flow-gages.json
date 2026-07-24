@@ -1,0 +1,1316 @@
+{
+  "abilene": {
+    "lakeGage": "08083270",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08083430",
+      "siteName": "Elm Ck at Abilene, TX",
+      "lat": 32.50730556,
+      "lon": -99.7410278,
+      "km": 33.4
+    }
+  },
+  "addicks": {
+    "lakeGage": "08073000",
+    "inflow": {
+      "siteId": "08072680",
+      "siteName": "S Mayde Ck at Heathergold Dr nr Addicks, TX",
+      "lat": 29.8051111,
+      "lon": -95.7096111,
+      "km": 8.4
+    },
+    "outflow": {
+      "siteId": "08073700",
+      "siteName": "Buffalo Bayou at Piney Point, TX",
+      "lat": 29.7468959,
+      "lon": -95.5235538,
+      "km": 10.8
+    }
+  },
+  "alan-henry": {
+    "lakeGage": "08079700",
+    "inflow": {
+      "siteId": "08079600",
+      "siteName": "DMF Brazos Rv at Justiceburg, TX",
+      "lat": 33.03843236,
+      "lon": -101.1976302,
+      "km": 14.2
+    },
+    "outflow": null
+  },
+  "amon-g-carter": {
+    "lakeGage": "08043700",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08044000",
+      "siteName": "Big Sandy Ck nr Bridgeport, TX",
+      "lat": 33.23178218,
+      "lon": -97.6947538,
+      "km": 31.2
+    }
+  },
+  "arlington": {
+    "lakeGage": "08049200",
+    "inflow": {
+      "siteId": "08048970",
+      "siteName": "Village Ck at Everman, TX",
+      "lat": 32.60346909,
+      "lon": -97.2650142,
+      "km": 14.3
+    },
+    "outflow": {
+      "siteId": "08057000",
+      "siteName": "Trinity Rv at Dallas, TX",
+      "lat": 32.7748517,
+      "lon": -96.8219464,
+      "km": 35.3
+    }
+  },
+  "arrowhead": {
+    "lakeGage": "07314800",
+    "inflow": {
+      "siteId": "07314500",
+      "siteName": "Little Wichita Rv nr Archer City, TX",
+      "lat": 33.66260225,
+      "lon": -98.6131124,
+      "km": 25
+    },
+    "outflow": null
+  },
+  "athens": {
+    "lakeGage": "08031290",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08032000",
+      "siteName": "Neches Rv nr Neches, TX",
+      "lat": 31.89239037,
+      "lon": -95.430786,
+      "km": 47.4
+    }
+  },
+  "austin": {
+    "lakeGage": "08154900",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08158000",
+      "siteName": "Colorado Rv at Austin, TX",
+      "lat": 30.24613889,
+      "lon": -97.6800556,
+      "km": 11.4
+    }
+  },
+  "b-a-steinhagen": {
+    "lakeGage": "08040000",
+    "inflow": {
+      "siteId": "08032700",
+      "siteName": "Neches Rv at SH 7 nr Pollok, TX",
+      "lat": 31.39670556,
+      "lon": -94.9658,
+      "km": 100.3
+    },
+    "outflow": {
+      "siteId": "08041000",
+      "siteName": "Neches Rv at Evadale, TX",
+      "lat": 30.35576944,
+      "lon": -94.0932566,
+      "km": 49.6
+    }
+  },
+  "bardwell": {
+    "lakeGage": "08063700",
+    "inflow": {
+      "siteId": "08063590",
+      "siteName": "Waxahachie Ck at Waxahachie, TX",
+      "lat": 32.3822222,
+      "lon": -96.8505556,
+      "km": 24.1
+    },
+    "outflow": {
+      "siteId": "08063800",
+      "siteName": "Waxahachie Ck nr Bardwell, TX",
+      "lat": 32.2434807,
+      "lon": -96.6402676,
+      "km": 1
+    }
+  },
+  "barker": {
+    "lakeGage": "08072500",
+    "inflow": {
+      "siteId": "08072600",
+      "siteName": "Buffalo Bayou at State Hwy 6 nr Addicks, TX",
+      "lat": 29.76938056,
+      "lon": -95.6431667,
+      "km": 0.4
+    },
+    "outflow": {
+      "siteId": "08073700",
+      "siteName": "Buffalo Bayou at Piney Point, TX",
+      "lat": 29.7468959,
+      "lon": -95.5235538,
+      "km": 12.2
+    }
+  },
+  "belton": {
+    "lakeGage": "08102000",
+    "inflow": {
+      "siteId": "08100500",
+      "siteName": "Leon Rv at Gatesville, TX",
+      "lat": 31.4347222,
+      "lon": -97.7583333,
+      "km": 45.4
+    },
+    "outflow": {
+      "siteId": "08104500",
+      "siteName": "Little Rv nr Little River, TX",
+      "lat": 30.9665723,
+      "lon": -97.346113,
+      "km": 19.8
+    }
+  },
+  "benbrook": {
+    "lakeGage": "08046500",
+    "inflow": {
+      "siteId": "08045850",
+      "siteName": "Clear Fk Trinity Rv nr Weatherford, TX",
+      "lat": 32.74040699,
+      "lon": -97.6519711,
+      "km": 21.5
+    },
+    "outflow": {
+      "siteId": "08048543",
+      "siteName": "W Fk Trinity Rv at Beach St, Ft Worth, TX",
+      "lat": 32.7517972,
+      "lon": -97.2894598,
+      "km": 18.7
+    }
+  },
+  "bob-sandlin": {
+    "lakeGage": "07344489",
+    "inflow": null,
+    "outflow": {
+      "siteId": "07344493",
+      "siteName": "Big Cypress Ck at US Hwy 271 nr Pittsburg, TX",
+      "lat": 33.07293056,
+      "lon": -94.9652278,
+      "km": 3.5
+    }
+  },
+  "bois-darc": {
+    "lakeGage": "07332621",
+    "inflow": null,
+    "outflow": {
+      "siteId": "07332622",
+      "siteName": "Bois D'Arc Ck at FM 409 nr Honey Grove, TX",
+      "lat": 33.74416667,
+      "lon": -95.9611111,
+      "km": 4
+    }
+  },
+  "bonham": {
+    "lakeGage": "07332610",
+    "inflow": null,
+    "outflow": {
+      "siteId": "07332622",
+      "siteName": "Bois D'Arc Ck at FM 409 nr Honey Grove, TX",
+      "lat": 33.74416667,
+      "lon": -95.9611111,
+      "km": 21.8
+    }
+  },
+  "bridgeport": {
+    "lakeGage": "08043000",
+    "inflow": {
+      "siteId": "08042600",
+      "siteName": "W Fk Trinity Rv at US Hwy 281 nr Windthorst, TX",
+      "lat": 33.41319444,
+      "lon": -98.3693611,
+      "km": 54.2
+    },
+    "outflow": {
+      "siteId": "08044500",
+      "siteName": "W Fk Trinity Rv nr Boyd, TX",
+      "lat": 33.08539917,
+      "lon": -97.558636,
+      "km": 29.7
+    }
+  },
+  "brownwood": {
+    "lakeGage": "08143000",
+    "inflow": {
+      "siteId": "08140700",
+      "siteName": "Pecan Bayou nr Cross Cut, TX",
+      "lat": 31.9726444,
+      "lon": -99.1303376,
+      "km": 19.2
+    },
+    "outflow": {
+      "siteId": "08143600",
+      "siteName": "Pecan Bayou nr Mullin, TX",
+      "lat": 31.5173861,
+      "lon": -98.740603,
+      "km": 43.4
+    }
+  },
+  "buchanan": {
+    "lakeGage": "08148000",
+    "inflow": {
+      "siteId": "08147000",
+      "siteName": "Colorado Rv nr San Saba, TX",
+      "lat": 31.21794515,
+      "lon": -98.564484,
+      "km": 53.7
+    },
+    "outflow": null
+  },
+  "canyon": {
+    "lakeGage": "08167700",
+    "inflow": {
+      "siteId": "08166250",
+      "siteName": "Guadalupe Rv nr Center Point, TX",
+      "lat": 29.98777778,
+      "lon": -99.11,
+      "km": 88.8
+    },
+    "outflow": {
+      "siteId": "08167800",
+      "siteName": "Guadalupe Rv at Sattler, TX",
+      "lat": 29.85910758,
+      "lon": -98.1800106,
+      "km": 2.1
+    }
+  },
+  "cedar-creek": {
+    "lakeGage": "08063010",
+    "inflow": {
+      "siteId": "08062800",
+      "siteName": "Cedar Ck nr Kemp, TX",
+      "lat": 32.50347129,
+      "lon": -96.1127508,
+      "km": 29.1
+    },
+    "outflow": {
+      "siteId": "08064570",
+      "siteName": "Trinity Rv at Hwy 287 nr Cayuga, TX",
+      "lat": 31.96708333,
+      "lon": -96.0471667,
+      "km": 31.9
+    }
+  },
+  "champion-creek": {
+    "lakeGage": "08123600",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08123850",
+      "siteName": "Colorado Rv abv Silver, TX",
+      "lat": 32.05374399,
+      "lon": -100.762052,
+      "km": 26.9
+    }
+  },
+  "cherokee": {
+    "lakeGage": "08021400",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08022120",
+      "siteName": "Sabine Rv nr Carthage, TX",
+      "lat": 32.2249722,
+      "lon": -94.22525,
+      "km": 44.6
+    }
+  },
+  "choke-canyon": {
+    "lakeGage": "08206900",
+    "inflow": {
+      "siteId": "08205500",
+      "siteName": "Frio Rv nr Derby, TX",
+      "lat": 28.73664429,
+      "lon": -99.1447556,
+      "km": 92.1
+    },
+    "outflow": {
+      "siteId": "08206910",
+      "siteName": "Choke Canyon Res OWC nr Three Rivers, TX",
+      "lat": 28.48610326,
+      "lon": -98.2416752,
+      "km": 0.5
+    }
+  },
+  "cisco": {
+    "lakeGage": "08086215",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08086500",
+      "siteName": "Hubbard Ck nr Breckenridge, TX",
+      "lat": 32.8370625,
+      "lon": -98.9481246,
+      "km": 44.5
+    }
+  },
+  "coleman": {
+    "lakeGage": "08140770",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08140860",
+      "siteName": "Jim Ned Ck at CR 140 nr Coleman, TX",
+      "lat": 31.8792472,
+      "lon": -99.2778417,
+      "km": 24.4
+    }
+  },
+  "coleto-creek": {
+    "lakeGage": "08177400",
+    "inflow": {
+      "siteId": "08176550",
+      "siteName": "Fifteenmile Ck nr Weser, TX",
+      "lat": 28.89776103,
+      "lon": -97.3549922,
+      "km": 26.2
+    },
+    "outflow": {
+      "siteId": "08188810",
+      "siteName": "Guadalupe Rv at SH 35 nr Tivoli, TX",
+      "lat": 28.4783224,
+      "lon": -96.8627751,
+      "km": 40.7
+    }
+  },
+  "colorado-city": {
+    "lakeGage": "08123000",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08123850",
+      "siteName": "Colorado Rv abv Silver, TX",
+      "lat": 32.05374399,
+      "lon": -100.762052,
+      "km": 35.6
+    }
+  },
+  "conroe": {
+    "lakeGage": "08067600",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08067650",
+      "siteName": "W Fk San Jacinto Rv bl Lk Conroe nr Conroe, TX",
+      "lat": 30.34215289,
+      "lon": -95.542998,
+      "km": 2.5
+    }
+  },
+  "corpus-christi": {
+    "lakeGage": "08210500",
+    "inflow": {
+      "siteId": "08194500",
+      "siteName": "Nueces Rv nr Tilden, TX",
+      "lat": 28.30888906,
+      "lon": -98.5572384,
+      "km": 73.7
+    },
+    "outflow": {
+      "siteId": "08211200",
+      "siteName": "Nueces Rv at Bluntzer, TX",
+      "lat": 27.93779594,
+      "lon": -97.7758308,
+      "km": 14.6
+    }
+  },
+  "cypress-springs": {
+    "lakeGage": "07344484",
+    "inflow": null,
+    "outflow": {
+      "siteId": "07344493",
+      "siteName": "Big Cypress Ck at US Hwy 271 nr Pittsburg, TX",
+      "lat": 33.07293056,
+      "lon": -94.9652278,
+      "km": 18.1
+    }
+  },
+  "e-v-spence": {
+    "lakeGage": "08123950",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08126380",
+      "siteName": "Colorado Rv nr Ballinger, TX",
+      "lat": 31.71542973,
+      "lon": -100.0264755,
+      "km": 49.9
+    }
+  },
+  "eagle-mountain": {
+    "lakeGage": "08045000",
+    "inflow": {
+      "siteId": "08042600",
+      "siteName": "W Fk Trinity Rv at US Hwy 281 nr Windthorst, TX",
+      "lat": 33.41319444,
+      "lon": -98.3693611,
+      "km": 103.6
+    },
+    "outflow": {
+      "siteId": "08048543",
+      "siteName": "W Fk Trinity Rv at Beach St, Ft Worth, TX",
+      "lat": 32.7517972,
+      "lon": -97.2894598,
+      "km": 21.1
+    }
+  },
+  "fort-phantom-hill": {
+    "lakeGage": "08083500",
+    "inflow": {
+      "siteId": "08083430",
+      "siteName": "Elm Ck at Abilene, TX",
+      "lat": 32.50730556,
+      "lon": -99.7410278,
+      "km": 11.4
+    },
+    "outflow": {
+      "siteId": "08084000",
+      "siteName": "Clear Fk Brazos Rv at Nugent, TX",
+      "lat": 32.6901186,
+      "lon": -99.6695326,
+      "km": 10.5
+    }
+  },
+  "georgetown": {
+    "lakeGage": "08104650",
+    "inflow": {
+      "siteId": "0810464660",
+      "siteName": "N Fk San Gabriel Rv at Reagan Blvd nr Leander, TX",
+      "lat": 30.69775,
+      "lon": -97.8492222,
+      "km": 12.1
+    },
+    "outflow": {
+      "siteId": "08105700",
+      "siteName": "San Gabriel Rv at Laneport, TX",
+      "lat": 30.69436146,
+      "lon": -97.2788849,
+      "km": 43
+    }
+  },
+  "gibbons-creek": {
+    "lakeGage": "08111058",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08111070",
+      "siteName": "Navasota Rv at SH 6 nr Navasota, TX",
+      "lat": 30.41840278,
+      "lon": -96.1066167,
+      "km": 21.6
+    }
+  },
+  "graham": {
+    "lakeGage": "08088400",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08088610",
+      "siteName": "Brazos Rv nr Graford, TX",
+      "lat": 32.85817854,
+      "lon": -98.411719,
+      "km": 36
+    }
+  },
+  "granbury": {
+    "lakeGage": "08090900",
+    "inflow": {
+      "siteId": "08090800",
+      "siteName": "Brazos Rv nr Dennis, TX",
+      "lat": 32.61568907,
+      "lon": -97.9258703,
+      "km": 34.8
+    },
+    "outflow": {
+      "siteId": "08091000",
+      "siteName": "Brazos Rv nr Glen Rose, TX",
+      "lat": 32.25903188,
+      "lon": -97.7025268,
+      "km": 12.9
+    }
+  },
+  "granger": {
+    "lakeGage": "08105600",
+    "inflow": {
+      "siteId": "0810464660",
+      "siteName": "N Fk San Gabriel Rv at Reagan Blvd nr Leander, TX",
+      "lat": 30.69775,
+      "lon": -97.8492222,
+      "km": 50
+    },
+    "outflow": {
+      "siteId": "08106500",
+      "siteName": "Little Rv nr Cameron, TX",
+      "lat": 30.83519047,
+      "lon": -96.9466512,
+      "km": 39.6
+    }
+  },
+  "grapevine": {
+    "lakeGage": "08054500",
+    "inflow": {
+      "siteId": "08053500",
+      "siteName": "Denton Ck nr Justin, TX",
+      "lat": 33.11901003,
+      "lon": -97.2905732,
+      "km": 27.2
+    },
+    "outflow": {
+      "siteId": "08055560",
+      "siteName": "Elm Fk Trinity Rv at Spur 348, Irving, TX",
+      "lat": 32.87333333,
+      "lon": -96.9305556,
+      "km": 16.1
+    }
+  },
+  "greenbelt": {
+    "lakeGage": "07299840",
+    "inflow": null,
+    "outflow": {
+      "siteId": "07300000",
+      "siteName": "Salt Fork Red River near Wellington, TX",
+      "lat": 34.95755294,
+      "lon": -100.220949,
+      "km": 61.6
+    }
+  },
+  "hords-creek": {
+    "lakeGage": "08141000",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08143500",
+      "siteName": "Pecan Bayou at Brownwood, TX",
+      "lat": 31.7364,
+      "lon": -98.9754889,
+      "km": 56.4
+    }
+  },
+  "houston-county": {
+    "lakeGage": "08065330",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08065350",
+      "siteName": "Trinity Rv nr Crockett, TX",
+      "lat": 31.33851319,
+      "lon": -95.6563407,
+      "km": 9.2
+    }
+  },
+  "hubbard-creek": {
+    "lakeGage": "08086400",
+    "inflow": {
+      "siteId": "08086212",
+      "siteName": "Hubbard Ck bl Albany, TX",
+      "lat": 32.73289717,
+      "lon": -99.1406299,
+      "km": 19.5
+    },
+    "outflow": {
+      "siteId": "08086500",
+      "siteName": "Hubbard Ck nr Breckenridge, TX",
+      "lat": 32.8370625,
+      "lon": -98.9481246,
+      "km": 1.9
+    }
+  },
+  "inks": {
+    "lakeGage": "08148100",
+    "inflow": {
+      "siteId": "08147000",
+      "siteName": "Colorado Rv nr San Saba, TX",
+      "lat": 31.21794515,
+      "lon": -98.564484,
+      "km": 56.7
+    },
+    "outflow": null
+  },
+  "j-b-thomas": {
+    "lakeGage": "08118000",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08119500",
+      "siteName": "Colorado Rv at Hwy 350 nr Ira, TX",
+      "lat": 32.53915278,
+      "lon": -101.0552222,
+      "km": 9.8
+    }
+  },
+  "jacksonville": {
+    "lakeGage": "08032200",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08032500",
+      "siteName": "Neches Rv nr Alto, TX",
+      "lat": 31.57945569,
+      "lon": -95.1659965,
+      "km": 42.8
+    }
+  },
+  "jim-chapman": {
+    "lakeGage": "07342495",
+    "inflow": {
+      "siteId": "07342470",
+      "siteName": "S Sulphur Rv at SH 11 nr Commerce, TX",
+      "lat": 33.21930278,
+      "lon": -95.8621944,
+      "km": 25.4
+    },
+    "outflow": {
+      "siteId": "07343200",
+      "siteName": "Sulphur Rv nr Talco, TX",
+      "lat": 33.3862233,
+      "lon": -95.1324428,
+      "km": 46.1
+    }
+  },
+  "joe-pool": {
+    "lakeGage": "08049800",
+    "inflow": {
+      "siteId": "08049580",
+      "siteName": "Mountain Ck nr Venus, TX",
+      "lat": 32.49097237,
+      "lon": -97.1230646,
+      "km": 20.4
+    },
+    "outflow": {
+      "siteId": "08057000",
+      "siteName": "Trinity Rv at Dallas, TX",
+      "lat": 32.7748517,
+      "lon": -96.8219464,
+      "km": 22.2
+    }
+  },
+  "kemp": {
+    "lakeGage": "07312000",
+    "inflow": {
+      "siteId": "07311900",
+      "siteName": "Wichita Rv nr Seymour, TX",
+      "lat": 33.70036966,
+      "lon": -99.3886905,
+      "km": 22.9
+    },
+    "outflow": {
+      "siteId": "07312330",
+      "siteName": "Wichita Rv at FM 368 nr Iowa Park, TX",
+      "lat": 33.89694444,
+      "lon": -98.7072222,
+      "km": 43.8
+    }
+  },
+  "kickapoo": {
+    "lakeGage": "07314000",
+    "inflow": null,
+    "outflow": {
+      "siteId": "07314500",
+      "siteName": "Little Wichita Rv nr Archer City, TX",
+      "lat": 33.66260225,
+      "lon": -98.6131124,
+      "km": 15.3
+    }
+  },
+  "lake-o-the-pines": {
+    "lakeGage": "07345900",
+    "inflow": {
+      "siteId": "07344493",
+      "siteName": "Big Cypress Ck at US Hwy 271 nr Pittsburg, TX",
+      "lat": 33.07293056,
+      "lon": -94.9652278,
+      "km": 56
+    },
+    "outflow": {
+      "siteId": "07346000",
+      "siteName": "Big Cypress Bayou nr Jefferson, TX",
+      "lat": 32.74958345,
+      "lon": -94.4988102,
+      "km": 0.6
+    }
+  },
+  "lavon": {
+    "lakeGage": "08060500",
+    "inflow": {
+      "siteId": "08059000",
+      "siteName": "E Fk Trinity Rv nr McKinney, TX",
+      "lat": 33.20372724,
+      "lon": -96.595824,
+      "km": 21.8
+    },
+    "outflow": {
+      "siteId": "08061970",
+      "siteName": "E Fk Trinity Rv abv Seagoville, TX",
+      "lat": 32.7004229,
+      "lon": -96.5313887,
+      "km": 37.1
+    }
+  },
+  "lewisville": {
+    "lakeGage": "08052800",
+    "inflow": {
+      "siteId": "08050400",
+      "siteName": "Elm Fk Trinity Rv at Gainesville, TX",
+      "lat": 33.62427479,
+      "lon": -97.1564016,
+      "km": 64.2
+    },
+    "outflow": {
+      "siteId": "08055560",
+      "siteName": "Elm Fk Trinity Rv at Spur 348, Irving, TX",
+      "lat": 32.87333333,
+      "lon": -96.9305556,
+      "km": 22
+    }
+  },
+  "limestone": {
+    "lakeGage": "08110470",
+    "inflow": {
+      "siteId": "08110325",
+      "siteName": "Navasota Rv abv Groesbeck, TX",
+      "lat": 31.57434158,
+      "lon": -96.5208295,
+      "km": 33.7
+    },
+    "outflow": {
+      "siteId": "08110800",
+      "siteName": "Navasota Rv at Old San Antonio Rd nr Bryan, TX",
+      "lat": 30.9737987,
+      "lon": -96.2416274,
+      "km": 39.8
+    }
+  },
+  "livingston": {
+    "lakeGage": "08066190",
+    "inflow": {
+      "siteId": "08065350",
+      "siteName": "Trinity Rv nr Crockett, TX",
+      "lat": 31.33851319,
+      "lon": -95.6563407,
+      "km": 99.7
+    },
+    "outflow": {
+      "siteId": "08066250",
+      "siteName": "Trinity Rv nr Goodrich, TX",
+      "lat": 30.57214544,
+      "lon": -94.9488223,
+      "km": 9
+    }
+  },
+  "lyndon-b-johnson": {
+    "lakeGage": "08152500",
+    "inflow": {
+      "siteId": "08147000",
+      "siteName": "Colorado Rv nr San Saba, TX",
+      "lat": 31.21794515,
+      "lon": -98.564484,
+      "km": 76.7
+    },
+    "outflow": null
+  },
+  "mackenzie": {
+    "lakeGage": "07298100",
+    "inflow": null,
+    "outflow": {
+      "siteId": "07298500",
+      "siteName": "Pr Dog Twn Fk Red Rv nr Brice, TX",
+      "lat": 34.62783574,
+      "lon": -100.9406994,
+      "km": 46.5
+    }
+  },
+  "marble-falls": {
+    "lakeGage": "08152706",
+    "inflow": {
+      "siteId": "08147000",
+      "siteName": "Colorado Rv nr San Saba, TX",
+      "lat": 31.21794515,
+      "lon": -98.564484,
+      "km": 79.2
+    },
+    "outflow": null
+  },
+  "medina": {
+    "lakeGage": "08179500",
+    "inflow": {
+      "siteId": "08178980",
+      "siteName": "Medina Rv abv English Crsg nr Pipe Creek, TX",
+      "lat": 29.69438889,
+      "lon": -98.9793056,
+      "km": 17.7
+    },
+    "outflow": {
+      "siteId": "08180700",
+      "siteName": "Medina Rv nr Macdona, TX",
+      "lat": 29.33495798,
+      "lon": -98.689744,
+      "km": 32.9
+    }
+  },
+  "meredith": {
+    "lakeGage": "07227900",
+    "inflow": {
+      "siteId": "07227500",
+      "siteName": "Canadian Rv nr Amarillo, TX",
+      "lat": 35.4703261,
+      "lon": -101.879628,
+      "km": 39.9
+    },
+    "outflow": null
+  },
+  "millers-creek": {
+    "lakeGage": "08082800",
+    "inflow": {
+      "siteId": "08082700",
+      "siteName": "Millers Ck nr Munday, TX",
+      "lat": 33.32926607,
+      "lon": -99.4650825,
+      "km": 11.3
+    },
+    "outflow": null
+  },
+  "mineral-wells": {
+    "lakeGage": "08090700",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08090800",
+      "siteName": "Brazos Rv nr Dennis, TX",
+      "lat": 32.61568907,
+      "lon": -97.9258703,
+      "km": 24.9
+    }
+  },
+  "monticello": {
+    "lakeGage": "07344488",
+    "inflow": null,
+    "outflow": {
+      "siteId": "07344493",
+      "siteName": "Big Cypress Ck at US Hwy 271 nr Pittsburg, TX",
+      "lat": 33.07293056,
+      "lon": -94.9652278,
+      "km": 7
+    }
+  },
+  "mountain-creek": {
+    "lakeGage": "08050050",
+    "inflow": {
+      "siteId": "08049580",
+      "siteName": "Mountain Ck nr Venus, TX",
+      "lat": 32.49097237,
+      "lon": -97.1230646,
+      "km": 31.7
+    },
+    "outflow": {
+      "siteId": "08062500",
+      "siteName": "Trinity Rv nr Rosser, TX",
+      "lat": 32.42652988,
+      "lon": -96.4630415,
+      "km": 56.4
+    }
+  },
+  "murvaul": {
+    "lakeGage": "08022200",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08022500",
+      "siteName": "Sabine Rv at Logansport, LA",
+      "lat": 31.97238949,
+      "lon": -94.0063014,
+      "km": 39.7
+    }
+  },
+  "nacogdoches": {
+    "lakeGage": "08036700",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08037180",
+      "siteName": "Angelina Rv at Hwy 59 nr Lufkin, TX",
+      "lat": 31.45718333,
+      "lon": -94.7263278,
+      "km": 17.4
+    }
+  },
+  "nasworthy": {
+    "lakeGage": "08132000",
+    "inflow": {
+      "siteId": "08128000",
+      "siteName": "S Concho Rv at Christoval, TX",
+      "lat": 31.18711186,
+      "lon": -100.5020388,
+      "km": 22.5
+    },
+    "outflow": {
+      "siteId": "08136500",
+      "siteName": "Concho Rv at Paint Rock, TX",
+      "lat": 31.5159908,
+      "lon": -99.9195226,
+      "km": 54.9
+    }
+  },
+  "navarro-mills": {
+    "lakeGage": "08063050",
+    "inflow": {
+      "siteId": "08063040",
+      "siteName": "Richland Ck at Hwy 22 nr Mertens, TX",
+      "lat": 32.05466944,
+      "lon": -96.9065194,
+      "km": 23.1
+    },
+    "outflow": {
+      "siteId": "08063100",
+      "siteName": "Richland Ck nr Dawson, TX",
+      "lat": 31.9384908,
+      "lon": -96.6813787,
+      "km": 2.3
+    }
+  },
+  "new-terrell-city": {
+    "lakeGage": "08062730",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08062800",
+      "siteName": "Cedar Ck nr Kemp, TX",
+      "lat": 32.50347129,
+      "lon": -96.1127508,
+      "km": 25.7
+    }
+  },
+  "north-fork-buffalo-creek": {
+    "lakeGage": "07312380",
+    "inflow": null,
+    "outflow": {
+      "siteId": "07312500",
+      "siteName": "Wichita Rv at Wichita Falls, TX",
+      "lat": 33.90955506,
+      "lon": -98.53367399,
+      "km": 21.9
+    }
+  },
+  "o-c-fisher": {
+    "lakeGage": "08134500",
+    "inflow": {
+      "siteId": "08133250",
+      "siteName": "N Concho Rv abv Sterling City, TX",
+      "lat": 31.8973574,
+      "lon": -101.105113,
+      "km": 74.7
+    },
+    "outflow": {
+      "siteId": "08136500",
+      "siteName": "Concho Rv at Paint Rock, TX",
+      "lat": 31.5159908,
+      "lon": -99.9195226,
+      "km": 53.4
+    }
+  },
+  "oak-creek": {
+    "lakeGage": "08125500",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08126380",
+      "siteName": "Colorado Rv nr Ballinger, TX",
+      "lat": 31.71542973,
+      "lon": -100.0264755,
+      "km": 42.8
+    }
+  },
+  "palestine": {
+    "lakeGage": "08031400",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08032000",
+      "siteName": "Neches Rv nr Neches, TX",
+      "lat": 31.89239037,
+      "lon": -95.430786,
+      "km": 17.9
+    }
+  },
+  "palo-duro": {
+    "lakeGage": "07233550",
+    "inflow": {
+      "siteId": "07233500",
+      "siteName": "Palo Duro Ck nr Spearman, TX",
+      "lat": 36.20225497,
+      "lon": -101.305993,
+      "km": 21.8
+    },
+    "outflow": null
+  },
+  "palo-pinto": {
+    "lakeGage": "08090300",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08090800",
+      "siteName": "Brazos Rv nr Dennis, TX",
+      "lat": 32.61568907,
+      "lon": -97.9258703,
+      "km": 32.3
+    }
+  },
+  "pat-cleburne": {
+    "lakeGage": "08091900",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08092000",
+      "siteName": "Nolan Rv at Blum, TX",
+      "lat": 32.15070534,
+      "lon": -97.402794,
+      "km": 15.4
+    }
+  },
+  "proctor": {
+    "lakeGage": "08099400",
+    "inflow": {
+      "siteId": "08099100",
+      "siteName": "Leon Rv nr De Leon, TX",
+      "lat": 32.1737502,
+      "lon": -98.5331058,
+      "km": 23.2
+    },
+    "outflow": {
+      "siteId": "08100000",
+      "siteName": "Leon Rv nr Hamilton, TX",
+      "lat": 31.78877645,
+      "lon": -98.1214319,
+      "km": 39.8
+    }
+  },
+  "ray-hubbard": {
+    "lakeGage": "08061550",
+    "inflow": {
+      "siteId": "08059000",
+      "siteName": "E Fk Trinity Rv nr McKinney, TX",
+      "lat": 33.20372724,
+      "lon": -96.595824,
+      "km": 45.8
+    },
+    "outflow": {
+      "siteId": "08061970",
+      "siteName": "E Fk Trinity Rv abv Seagoville, TX",
+      "lat": 32.7004229,
+      "lon": -96.5313887,
+      "km": 11.6
+    }
+  },
+  "red-bluff": {
+    "lakeGage": "08410000",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08412500",
+      "siteName": "Pecos Rv nr Orla, TX",
+      "lat": 31.87264499,
+      "lon": -103.8315949,
+      "km": 8.1
+    }
+  },
+  "sam-rayburn": {
+    "lakeGage": "08039300",
+    "inflow": {
+      "siteId": "08037180",
+      "siteName": "Angelina Rv at Hwy 59 nr Lufkin, TX",
+      "lat": 31.45718333,
+      "lon": -94.7263278,
+      "km": 73.6
+    },
+    "outflow": {
+      "siteId": "08040600",
+      "siteName": "Neches Rv nr Town Bluff, TX",
+      "lat": 30.79103579,
+      "lon": -94.1510237,
+      "km": 30.3
+    }
+  },
+  "somerville": {
+    "lakeGage": "08109900",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08110200",
+      "siteName": "Brazos Rv at Washington, TX",
+      "lat": 30.359175,
+      "lon": -96.1549028,
+      "km": 35.8
+    }
+  },
+  "stamford": {
+    "lakeGage": "08084500",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08085500",
+      "siteName": "Clear Fk Brazos Rv at Ft Griffin, TX",
+      "lat": 32.93297778,
+      "lon": -99.2153889,
+      "km": 36.9
+    }
+  },
+  "stillhouse-hollow": {
+    "lakeGage": "08104050",
+    "inflow": {
+      "siteId": "08103800",
+      "siteName": "Lampasas Rv nr Kempner, TX",
+      "lat": 31.0793403,
+      "lon": -98.0166919,
+      "km": 46.5
+    },
+    "outflow": {
+      "siteId": "08104500",
+      "siteName": "Little Rv nr Little River, TX",
+      "lat": 30.9665723,
+      "lon": -97.346113,
+      "km": 18.8
+    }
+  },
+  "striker": {
+    "lakeGage": "08033810",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08036500",
+      "siteName": "Angelina Rv nr Alto, TX",
+      "lat": 31.67184364,
+      "lon": -94.9527152,
+      "km": 29.2
+    }
+  },
+  "tawakoni": {
+    "lakeGage": "08017400",
+    "inflow": {
+      "siteId": "08017250",
+      "siteName": "W Caddo Ck at IH 30 nr Caddo Mills, TX",
+      "lat": 33.01427778,
+      "lon": -96.2125,
+      "km": 35.6
+    },
+    "outflow": {
+      "siteId": "08017410",
+      "siteName": "Sabine Rv nr Wills Point, TX",
+      "lat": 32.8062358,
+      "lon": -95.9194109,
+      "km": 0.3
+    }
+  },
+  "texana": {
+    "lakeGage": "08164525",
+    "inflow": {
+      "siteId": "08164390",
+      "siteName": "Navidad Rv at Strane Pk nr Edna, TX",
+      "lat": 29.06553568,
+      "lon": -96.6741434,
+      "km": 21.5
+    },
+    "outflow": null
+  },
+  "travis": {
+    "lakeGage": "08154500",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08158000",
+      "siteName": "Colorado Rv at Austin, TX",
+      "lat": 30.24613889,
+      "lon": -97.6800556,
+      "km": 27.1
+    }
+  },
+  "twin-buttes": {
+    "lakeGage": "08131200",
+    "inflow": {
+      "siteId": "08130700",
+      "siteName": "Spring Ck abv Twin Buttes Res nr San Angelo, TX",
+      "lat": 31.3309973,
+      "lon": -100.600931,
+      "km": 8.2
+    },
+    "outflow": {
+      "siteId": "08136500",
+      "siteName": "Concho Rv at Paint Rock, TX",
+      "lat": 31.5159908,
+      "lon": -99.9195226,
+      "km": 60.6
+    }
+  },
+  "tyler": {
+    "lakeGage": "08034000",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08034500",
+      "siteName": "Mud Ck nr Jacksonville, TX",
+      "lat": 31.97655578,
+      "lon": -95.1607787,
+      "km": 29.5
+    }
+  },
+  "waxahachie": {
+    "lakeGage": "08063600",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08063800",
+      "siteName": "Waxahachie Ck nr Bardwell, TX",
+      "lat": 32.2434807,
+      "lon": -96.6402676,
+      "km": 19
+    }
+  },
+  "weatherford": {
+    "lakeGage": "08045800",
+    "inflow": null,
+    "outflow": {
+      "siteId": "08048543",
+      "siteName": "W Fk Trinity Rv at Beach St, Ft Worth, TX",
+      "lat": 32.7517972,
+      "lon": -97.2894598,
+      "km": 36.1
+    }
+  },
+  "white-river": {
+    "lakeGage": "08080910",
+    "inflow": {
+      "siteId": "08080700",
+      "siteName": "Running Water Draw at Plainview, TX",
+      "lat": 34.17896048,
+      "lon": -101.7026748,
+      "km": 98.5
+    },
+    "outflow": null
+  },
+  "whitney": {
+    "lakeGage": "08092500",
+    "inflow": {
+      "siteId": "08091000",
+      "siteName": "Brazos Rv nr Glen Rose, TX",
+      "lat": 32.25903188,
+      "lon": -97.7025268,
+      "km": 53.7
+    },
+    "outflow": {
+      "siteId": "08096500",
+      "siteName": "Brazos Rv at Waco, TX",
+      "lat": 31.53600056,
+      "lon": -97.0733325,
+      "km": 46.3
+    }
+  },
+  "worth": {
+    "lakeGage": "08045400",
+    "inflow": {
+      "siteId": "08042800",
+      "siteName": "W Fk Trinity Rv nr Jacksboro, TX",
+      "lat": 33.29333333,
+      "lon": -98.079,
+      "km": 83.4
+    },
+    "outflow": {
+      "siteId": "08048543",
+      "siteName": "W Fk Trinity Rv at Beach St, Ft Worth, TX",
+      "lat": 32.7517972,
+      "lon": -97.2894598,
+      "km": 12.6
+    }
+  },
+  "wright-patman": {
+    "lakeGage": "07344200",
+    "inflow": {
+      "siteId": "07343200",
+      "siteName": "Sulphur Rv nr Talco, TX",
+      "lat": 33.3862233,
+      "lon": -95.1324428,
+      "km": 90.7
+    },
+    "outflow": {
+      "siteId": "07344210",
+      "siteName": "Sulphur Rv nr Texarkana, TX",
+      "lat": 33.30416667,
+      "lon": -94.1513889,
+      "km": 0.9
+    }
+  }
+}

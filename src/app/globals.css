@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
+/*
+ * Anchored on deep slate/teal so the fill-status colors — the only thing users
+ * actually scan for — carry the contrast rather than competing with chrome.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --background: #f7fafb;
+  --surface: #ffffff;
+  --border: #dde6ea;
+  --foreground: #0d1b21;
+  --muted: #566871;
+  --accent: #0e7490;
+  /* Basemap: land sits just off the page background so the state silhouette
+     reads without competing with the reservoir markers drawn on top. */
+  --map-land: #eef3f5;
+  --map-county: #c3d1d8;
+  --map-state: #7f95a0;
+  --map-hover: #dbe7ec;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #071013;
+    --surface: #0e1a1f;
+    --border: #1d2f36;
+    --foreground: #e6f1f4;
+    --muted: #8ba3ac;
+    --accent: #22d3ee;
+    --map-land: #12242b;
+    --map-county: #24404a;
+    --map-state: #4c6f7c;
+    --map-hover: #1b343e;
   }
+}
+
+@theme inline {
+  /* Tailwind ships no breakpoint below 40rem, but the wordmark and nav need to
+     diverge around 24rem — narrower than any stock breakpoint. */
+  --breakpoint-xs: 24rem;
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  /* Wide content scrolls inside its own container; the page itself never does. */
+  overflow-x: hidden;
+}
+
+/* Stop iOS Safari from inflating text in landscape. */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Horizontal chip rows scroll by swipe; the scrollbar itself is visual noise. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/*
+ * iOS zooms the page when a focused input's font-size is under 16px. The filter
+ * and search inputs read as small UI, so pin them to 16px on touch devices only.
+ */
+@media (hover: none) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Tabular figures keep data columns from jittering as values update. */
+.nums {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
 }

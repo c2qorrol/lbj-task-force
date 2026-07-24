@@ -1,0 +1,67 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "texas-lake-levels",
+  "main": ".open-next/worker.js",
+
+  // nodejs_compat is required by the OpenNext adapter, and the compatibility
+  // date must be 2024-09-23 or later for Next.js to work on Workers.
+  "compatibility_date": "2026-07-22",
+  "compatibility_flags": ["nodejs_compat"],
+
+  /*
+   * Custom Domain. `custom_domain: true` makes Cloudflare create the DNS record
+   * and issue the certificate automatically, and routes every path on the
+   * hostname to this Worker. Requires lbjtaskforce.com to be an active zone on
+   * the same account.
+   */
+  "routes": [
+    {
+      "pattern": "lbjtaskforce.com",
+      "custom_domain": true
+    },
+    {
+      // www serves the same Worker. Canonical tags and og:url still point at
+      // the apex (NEXT_PUBLIC_SITE_URL), so this is not treated as duplicate
+      // content by crawlers.
+      "pattern": "www.lbjtaskforce.com",
+      "custom_domain": true
+    }
+  ],
+
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+
+  /*
+   * Runtime copy of the site origin. Prerendered pages get it at build time
+   * from .env.production, but dynamic routes (per-lake/per-well OG images)
+   * and ISR re-renders read process.env on the Worker, which only sees vars
+   * defined here.
+   */
+  "vars": {
+    "NEXT_PUBLIC_SITE_URL": "https://lbjtaskforce.com"
+  },
+
+  "observability": {
+    "enabled": true
+  },
+
+  /*
+   * Incremental (ISR) cache.
+   *
+   * Not optional for this app. Without a shared cache every request re-renders
+   * ISR routes, and each of those hits TWDB — which throttles bursts with
+   * 502/503. KV gives all isolates one cache so upstream is polled on the
+   * revalidate schedule rather than per request.
+   *
+   * Recreate with:
+   *   npx wrangler kv namespace create NEXT_INC_CACHE_KV
+   */
+  "kv_namespaces": [
+    {
+      "binding": "NEXT_INC_CACHE_KV",
+      "id": "f0bb0215451a4831b2960ef8e26def62"
+    }
+  ]
+}
