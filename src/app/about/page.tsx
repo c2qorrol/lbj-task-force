@@ -33,6 +33,18 @@ export default function AboutPage() {
         </p>
       </div>
 
+      <div className="flex justify-center pt-1">
+        {/* eslint-disable-next-line @next/next/no-img-element -- static
+            pre-sized PNG, same reasoning as the header logo in layout.tsx. */}
+        <img
+          src="/emblem-large.png"
+          alt="LBJ Task Force emblem"
+          width={160}
+          height={160}
+          className="w-32 h-32 sm:w-40 sm:h-40"
+        />
+      </div>
+
       <Card>
         <h2 className="font-semibold mb-2">Creators</h2>
         <p className="text-sm text-muted">
