@@ -614,8 +614,18 @@ npm run generate:emblem   # not a sync — rebuilds icons from the master emblem
 
 The `sync:*` scripts write into `src/data/` and `public/history/`, and their
 output is committed. Nothing regenerates at request time, so a stale checkout
-serves stale normals rather than failing — rerun them when gages or reservoirs
-change (yearly is plenty for percentiles and history).
+serves stale normals rather than failing.
+
+They also run on a schedule — `.github/workflows/data-refresh.yml`, quarterly,
+also runnable by hand from the Actions tab with a choice of which scripts to
+run. It opens a **pull request** rather than pushing: this data decides what
+the maps and percentile bands claim is normal, and a silent commit that shifts
+every reservoir's normal range is not something to find out about later. The
+run verifies typecheck, tests and a full Workers build against the regenerated
+data before proposing it, because a pull request opened with `GITHUB_TOKEN`
+does not trigger CI. Quarterly is deliberate: period-of-record normals barely
+move in three months, and a monthly run would mostly produce 10 MB diffs of
+noise.
 
 ### Tests
 

@@ -1,0 +1,129 @@
+name: Data refresh
+
+# Regenerates the committed snapshots in src/data/ and public/history/ and
+# opens a pull request with whatever moved.
+#
+# A pull request rather than a push on purpose: this data decides what the maps
+# and percentile bands say, and a silent commit that shifts every reservoir's
+# normal range is not something to discover later.
+#
+# Quarterly, because that is what the data actually warrants — period-of-record
+# normals barely move in three months, and a monthly run would mostly produce
+# 10 MB diffs of noise. Reach for the manual run when a gage or reservoir is
+# known to have changed.
+on:
+  schedule:
+    # 06:00 UTC on the 1st of Jan/Apr/Jul/Oct — about 1am Central.
+    - cron: "0 6 1 1,4,7,10 *"
+  workflow_dispatch:
+    inputs:
+      scripts:
+        description: Which sync scripts to run
+        type: choice
+        default: all
+        options: [all, slugs, history, percentiles, flow, usace]
+
+concurrency:
+  group: data-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  BRANCH: automated/data-refresh
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    # The scripts are deliberately unhurried — TWDB throttles bursts, so
+    # sync:history alone paces 120 sequential downloads.
+    timeout-minutes: 90
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # sync:slugs first: it writes the slug map that sync:history reads to
+      # know which per-reservoir files to fetch.
+      - name: Run sync scripts
+        env:
+          SCRIPTS: ${{ inputs.scripts || 'all' }}
+        run: |
+          set -euo pipefail
+          run() { echo "::group::npm run $1"; npm run "$1"; echo "::endgroup::"; }
+          case "$SCRIPTS" in
+            all)         run sync:slugs; run sync:usace; run sync:flow; run sync:history; run sync:percentiles ;;
+            slugs)       run sync:slugs ;;
+            history)     run sync:history ;;
+            percentiles) run sync:percentiles ;;
+            flow)        run sync:flow ;;
+            usace)       run sync:usace ;;
+            *)           echo "::error::unknown script set: $SCRIPTS"; exit 1 ;;
+          esac
+
+      - name: Look for changes
+        id: diff
+        run: |
+          set -euo pipefail
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Upstream data is unchanged — nothing to propose." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            {
+              echo "### Files changed"
+              echo '```'
+              git status --porcelain
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      # Commit before building, so build output can never end up in the commit.
+      - name: Commit to the refresh branch
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "Refresh precomputed data ($(date -u +%Y-%m-%d))"
+
+      # A pull request opened with GITHUB_TOKEN does not trigger other
+      # workflows, so CI will not run on it. Verify here instead, and never
+      # propose data that fails.
+      - name: Verify the regenerated data
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          npx tsc --noEmit
+          npm test
+          npm run cf:build
+
+      - name: Open or update the pull request
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git push --force origin "HEAD:$BRANCH"
+
+          if [ -n "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
+            echo "Existing pull request updated." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          # Body kept in its own file: a heredoc inside a YAML block scalar
+          # depends on the terminator surviving indentation stripping, which is
+          # a silent break waiting for whoever re-indents this next.
+          gh pr create --base main --head "$BRANCH" \
+            --title "Refresh precomputed data" \
+            --body-file .github/data-refresh-pr-body.md

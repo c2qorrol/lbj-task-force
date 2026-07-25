@@ -14,14 +14,10 @@ thinner than the engineering inside it.
   what gets written — are still only exercised by running them for real. The
   emblem generator's ICO byte assembly is untested too, though its output is
   verified by every browser that renders the favicon.
-- **Scheduled data refresh.** `src/data/` and `public/history/` are
-  point-in-time snapshots refreshed only when someone remembers. New gages,
-  re-attributed reaches and drifting normals accumulate quietly. A scheduled
-  GitHub Action opening a PR with the regenerated files would close it, and a
-  PR rather than a direct push keeps a human in the loop on data movement.
 - **Upstream health check.** If TWDB renames a field, the first to notice is a
-  visitor. A route or scheduled job that asserts each feed still parses turns
-  that into an alert.
+  visitor. The quarterly data refresh would catch a broken feed eventually, but
+  three months is a long time to be wrong. A route or scheduled job that
+  asserts each feed still parses turns that into an alert.
 
 ## Cheap wins
 
@@ -83,6 +79,9 @@ Kept short deliberately — the README documents how these work.
   two bugs of the same shape — `Number(null)` and `Number("")` are both `0`,
   so absent values were passing guards written to reject them, in the CoCoRaHS
   rows and in the USGS percentile thresholds.
+- A quarterly data-refresh workflow that regenerates the precomputed snapshots
+  and opens a pull request, verifying typecheck, tests and a full build before
+  proposing anything.
 - NWS river forecasts on lake pages, with the forecast peak called out.
 - Streamflow percentile colouring on the map, replacing the decommissioned
   WaterWatch service with precomputed USGS daily statistics.
