@@ -14,10 +14,10 @@ thinner than the engineering inside it.
   what gets written — are still only exercised by running them for real. The
   emblem generator's ICO byte assembly is untested too, though its output is
   verified by every browser that renders the favicon.
-- **Upstream health check.** If TWDB renames a field, the first to notice is a
-  visitor. The quarterly data refresh would catch a broken feed eventually, but
-  three months is a long time to be wrong. A route or scheduled job that
-  asserts each feed still parses turns that into an alert.
+- **Alerting that reaches a human.** `/api/health` and its daily workflow
+  detect a broken feed, but a failed run only notifies whoever watches the
+  Actions tab or their GitHub email. If this site ever matters to anyone but
+  its author, that wants routing somewhere a person actually looks.
 
 ## Cheap wins
 
@@ -82,6 +82,9 @@ Kept short deliberately — the README documents how these work.
 - A quarterly data-refresh workflow that regenerates the precomputed snapshots
   and opens a pull request, verifying typecheck, tests and a full build before
   proposing anything.
+- `/api/health` plus a daily workflow that reads it — shape assertions over
+  every upstream, distinguishing a missing enrichment panel from a feed the
+  site cannot work without.
 - NWS river forecasts on lake pages, with the forecast peak called out.
 - Streamflow percentile colouring on the map, replacing the decommissioned
   WaterWatch service with precomputed USGS daily statistics.

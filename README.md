@@ -627,6 +627,29 @@ does not trigger CI. Quarterly is deliberate: period-of-record normals barely
 move in three months, and a monthly run would mostly produce 10 MB diffs of
 noise.
 
+### Upstream health
+
+`/api/health` reports whether each upstream still looks like itself, and
+`.github/workflows/health-check.yml` reads it once a day.
+
+The failure this exists to catch is not an outage. An outage is loud, and every
+enrichment panel already degrades gracefully. It is the quiet one: an agency
+renames a field, the request still returns 200, the parser still runs, and the
+site serves confident nulls. So each check asserts a **shape** — "at least 100
+reservoirs, and at least 100 of them carry a percent-full figure" — rather than
+that a request succeeded.
+
+Checks call the same cached data-layer functions the pages call, so what is
+reported is the data the site is actually serving rather than a fresh fetch
+nobody sees. While a cache holds good data the site is genuinely fine; when it
+expires against a broken upstream, the pages and this endpoint degrade
+together.
+
+`down` and `degraded` are kept distinct, and only `down` fails the workflow or
+answers 503. Losing TWDB's conditions feed means the site cannot do its job;
+losing CoCoRaHS means one panel is missing. Paging on the second would train
+everyone to ignore the first.
+
 ### Tests
 
 `tests/` covers the upstream parsers, the pure calculations they feed, and the

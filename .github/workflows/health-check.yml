@@ -1,0 +1,71 @@
+name: Upstream health
+
+# Asks the live site whether its upstreams still look like themselves.
+#
+# The failure worth catching is the quiet one: an agency renames a field, the
+# request still returns 200, and the site serves confident nulls. /api/health
+# asserts shapes rather than reachability, so that shows up as a failure here
+# instead of as a visitor noticing the map has gone blank.
+#
+# Daily. A broken feed is not an emergency — every enrichment panel degrades
+# gracefully — but three months (the data-refresh cadence) is far too long to
+# be wrong.
+on:
+  schedule:
+    - cron: "0 13 * * *" # 13:00 UTC, ~8am Central, after TWDB posts the day's reading
+  workflow_dispatch:
+
+concurrency:
+  group: health-check
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Query the health endpoint
+        run: |
+          set -uo pipefail
+
+          body=$(mktemp)
+          # The endpoint answers 503 when a critical feed is gone, so let curl
+          # report the status rather than failing the step on its own.
+          code=$(curl -sS -o "$body" -w '%{http_code}' --max-time 120 \
+            https://lbjtaskforce.com/api/health) || {
+              echo "::error::could not reach the health endpoint at all"
+              exit 1
+            }
+
+          status=$(jq -r '.status // "unparseable"' "$body")
+          echo "HTTP $code, status $status"
+
+          {
+            echo "### Upstream health: \`$status\` (HTTP $code)"
+            echo ""
+            echo "| Source | | Detail | ms |"
+            echo "| --- | --- | --- | --- |"
+            jq -r '.checks[] | "| \(.source) | \(if .ok then "ok" else (if .critical then "**FAILED**" else "failed" end) end) | \(.detail) | \(.ms) |"' "$body"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          case "$status" in
+            ok)
+              ;;
+            degraded)
+              # Loud enough to see in the run list, quiet enough not to page.
+              jq -r '.checks[] | select(.ok | not) | "::warning::\(.source): \(.detail)"' "$body"
+              ;;
+            down)
+              jq -r '.checks[] | select(.ok | not) | "::error::\(.source): \(.detail)"' "$body"
+              exit 1
+              ;;
+            *)
+              echo "::error::health endpoint returned something unreadable (HTTP $code)"
+              head -c 2000 "$body"
+              exit 1
+              ;;
+          esac
