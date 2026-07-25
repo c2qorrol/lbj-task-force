@@ -21,15 +21,18 @@ list of things that are easy to get wrong.
 
 ## Before you claim it works
 
-There is no test suite, so this is the whole safety net:
-
 ```bash
-npx tsc --noEmit && npm run lint && npm run cf:build
+npx tsc --noEmit && npm run lint && npm test && npm run cf:build
 ```
 
+`npm test` (vitest, `tests/`) covers the upstream parsers and the pure
+calculations they feed. It never touches the network: every case hands the
+parser a fixture reproducing a real quirk of the feed. **If you change a
+parser, add the malformed input that motivated the change** — the failure mode
+that matters here is a silently wrong number, not a crash.
+
 `cf:build` is the real Workers build, and catches Satori and runtime
-incompatibilities that `next dev` cannot. Adding tests around the upstream
-parsers is the highest-value open task — see the roadmap.
+incompatibilities that `next dev` cannot.
 
 ## Deployment is automatic — don't
 

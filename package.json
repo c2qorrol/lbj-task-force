@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "sync:slugs": "node scripts/sync-slugs.mjs",
     "sync:counties": "node scripts/sync-counties.mjs",
     "sync:flow": "node scripts/sync-flow-gages.mjs",
@@ -35,6 +37,7 @@
     "eslint-config-next": "16.2.11",
     "tailwindcss": "^4",
     "typescript": "^5",
+    "vitest": "^4.1.10",
     "wrangler": "^4.113.0"
   }
 }

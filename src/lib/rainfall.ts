@@ -55,7 +55,16 @@ function iso(daysAgo: number): string {
   return new Date(Date.now() - daysAgo * 86_400_000).toISOString().slice(0, 10);
 }
 
+/**
+ * Null and empty string are absent readings, not zero.
+ *
+ * `Number(null)` is 0 and `Number("")` is 0, so without these guards a station
+ * that filed no measurement counted as a station reporting no rain — dragging
+ * the "average of N stations" figure down — and a row with no coordinates was
+ * placed at 0°, 0°.
+ */
 function num(v: unknown): number | null {
+  if (v === null || v === undefined || v === "") return null;
   const n = Number(v);
   return Number.isFinite(n) ? n : null;
 }

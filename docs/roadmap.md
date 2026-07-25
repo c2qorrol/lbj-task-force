@@ -8,12 +8,12 @@ ceremony — the top section is the part that would hurt most to keep ignoring.
 The site is deployed, documented and public; the engineering around it is
 thinner than the engineering inside it.
 
-- **Tests around the parsers.** Correctness rests on hand-rolled parsers for
-  TWDB CSV, USGS RDB, NWPS JSON and CoCoRaHS exports — formats owned by third
-  parties who will change them. There is no test script at all. Fixture-based
-  tests over the parsers and the pure functions (`classifyFlow`, `computeTrend`,
-  `summarize`, `computeSupplyOutlook`) would convert "silently wrong numbers"
-  into "failing build". Highest value item here.
+- **Extend the test suite to the sync scripts.** `tests/` now covers the
+  runtime parsers and calculations, but `scripts/sync-*.mjs` are untested — in
+  particular the USGS RDB parser in `sync-flow-percentiles.mjs`, which has the
+  same "silently wrong number" failure mode and the added trap of a
+  column-width row that must be skipped. Testing it means exporting `parseRdb`
+  and guarding the top-level `main()` call.
 - **Scheduled data refresh.** `src/data/` and `public/history/` are
   point-in-time snapshots refreshed only when someone remembers. New gages,
   re-attributed reaches and drifting normals accumulate quietly. A scheduled
@@ -78,6 +78,10 @@ Ordered roughly by value per unit of effort.
 
 Kept short deliberately — the README documents how these work.
 
+- A test suite (vitest, `tests/`) over the upstream parsers and the pure
+  calculations, all fixture-driven and offline. It immediately found one bug:
+  `Number(null)` is `0`, so CoCoRaHS rows with no reading and no coordinates
+  were surviving a guard written to drop them.
 - NWS river forecasts on lake pages, with the forecast peak called out.
 - Streamflow percentile colouring on the map, replacing the decommissioned
   WaterWatch service with precomputed USGS daily statistics.

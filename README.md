@@ -601,6 +601,7 @@ are derived rather than chased with effects.
 npm install
 npm run dev          # http://localhost:3000
 npm run build        # origin comes from .env.production (see Link previews)
+npm test             # vitest, offline
 
 npm run sync:slugs        # TWDB reservoir key -> URL slug
 npm run sync:counties     # Texas county basemap geometry
@@ -615,6 +616,25 @@ The `sync:*` scripts write into `src/data/` and `public/history/`, and their
 output is committed. Nothing regenerates at request time, so a stale checkout
 serves stale normals rather than failing — rerun them when gages or reservoirs
 change (yearly is plenty for percentiles and history).
+
+### Tests
+
+`tests/` covers the upstream parsers and the pure calculations they feed, with
+vitest. Every case is a fixture reproducing a real quirk of a feed — USGS's
+`-999999` sentinel, TWDB's comment preamble and name-addressed columns, NWPS
+publishing forecast flow in kcfs, CoCoRaHS rows arriving unordered — because
+the failure mode that matters for this site is a **silently wrong number**
+rather than a crash. Nothing touches the network, so the suite runs in well
+under a second and cannot fail because an agency is having a bad day.
+
+Two rules keep it useful. Assert the *quirk*, not the happy path: a test that
+only proves well-formed input parses would not have caught anything real. And
+when a parser changes, add the malformed input that motivated the change.
+
+Writing this suite immediately found a live bug — `Number(null)` is `0`, so
+CoCoRaHS rows carrying no measurement and no coordinates passed a guard written
+to drop them, counting as stations reporting zero rain and pulling the
+"average across N stations" figure down.
 
 ## Deploying to Cloudflare Workers
 

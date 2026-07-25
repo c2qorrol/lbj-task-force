@@ -44,6 +44,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Test
+        run: npm test
+
       # Builds the same bundle Cloudflare will build, without publishing it.
       # NEXT_PUBLIC_SITE_URL comes from the committed .env.production, so
       # prerendered canonical and og:image URLs point at the real origin here
