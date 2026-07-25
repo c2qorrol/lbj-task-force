@@ -1,0 +1,52 @@
+name: CI
+
+# Checks only — deploying is Cloudflare's job.
+#
+# Workers Builds watches this repository and builds and deploys from inside
+# Cloudflare's own infrastructure, so no Cloudflare API token is stored in
+# GitHub. This workflow exists to catch type errors, lint failures and broken
+# builds on a pull request, before Workers Builds ever sees the commit.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Nothing here publishes, so a superseded run is always safe to abandon.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # The build prerenders pages, which fetches TWDB, USGS, NWPS, USDM and
+    # CoCoRaHS. That is slower and less predictable than a self-contained
+    # build, hence the generous ceiling.
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Lint
+        run: npm run lint
+
+      # Builds the same bundle Cloudflare will build, without publishing it.
+      # NEXT_PUBLIC_SITE_URL comes from the committed .env.production, so
+      # prerendered canonical and og:image URLs point at the real origin here
+      # exactly as they will in the real build.
+      - name: Build Workers bundle
+        run: npm run cf:build

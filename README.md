@@ -655,7 +655,7 @@ account-scoped, so switching accounts means recreating the namespace.
 ### Deploy
 
 Pushing to `main` deploys automatically — see **Continuous deployment** below.
-To deploy by hand:
+To deploy by hand, or to recover when Workers Builds is unavailable:
 
 ```bash
 npm run cf:deploy
@@ -679,32 +679,45 @@ process, delete the directory, and rerun.
 
 ### Continuous deployment
 
-`.github/workflows/deploy.yml` typechecks, lints and builds every pull request,
-and additionally deploys on a push to `main` — or on a manual run from the
-Actions tab, which is how you redeploy without a code change. Build and deploy
-are separate
-steps because `opennextjs-cloudflare deploy` does **not** rebuild — it uploads
-the assets and cache to KV and runs `wrangler deploy` against the bundle the
-build step already produced, so a PR exercises the identical build without
-publishing anything.
+**Cloudflare Workers Builds** deploys this repository. It watches `main` and
+builds inside Cloudflare's own infrastructure, which is the reason to prefer it
+over deploying from GitHub Actions: **no Cloudflare credential is stored
+outside Cloudflare.** Configure it under Workers &amp; Pages → the Worker →
+Settings → Build, connecting the GitHub repository through Cloudflare's GitHub
+App:
 
-Two repository secrets are required:
-
-| Secret | Value |
+| Setting | Value |
 | --- | --- |
-| `CLOUDFLARE_API_TOKEN` | Token with **Workers Scripts:Edit** and **Workers KV Storage:Edit** (the "Edit Cloudflare Workers" template covers both) |
-| `CLOUDFLARE_ACCOUNT_ID` | The account that owns the Worker |
+| Build command | `npm run cf:build` |
+| Deploy command | `npx opennextjs-cloudflare deploy` |
+| Branch | `main` |
+| Root directory | `/` |
 
-```bash
-gh secret set CLOUDFLARE_API_TOKEN      # paste at the prompt; never commit it
-gh secret set CLOUDFLARE_ACCOUNT_ID
-```
+Non-production branches can be enabled for preview builds; they publish
+[preview URLs](https://developers.cloudflare.com/workers/configuration/previews/)
+rather than touching production.
 
-The deploy step fails rather than skipping when the token is absent: a green run
-has to mean the site actually shipped. Note the build prerenders pages, which
-fetches TWDB, USGS, NWPS, USDM and CoCoRaHS — an upstream outage can fail a
-build that has nothing wrong with it, and the dashboard in particular fetches
-TWDB without a fallback. Rerun the job.
+No build variables are needed — `NEXT_PUBLIC_SITE_URL` is committed in
+`.env.production`, which is exactly why it lives there rather than being passed
+on the command line.
+
+An API-token deployment from GitHub Actions was tried first and abandoned. It
+works, but the token has to carry **Zone → Workers Routes → Edit** on top of
+the Workers and KV permissions, because `wrangler deploy` reconciles the
+`custom_domain` routes in `wrangler.jsonc` against the zone — and that is a
+broad credential to keep in a third-party system for a site that Cloudflare can
+just build itself.
+
+`.github/workflows/ci.yml` remains, and now only typechecks, lints and builds.
+It never publishes, so it needs no secrets at all: it catches type errors, lint
+failures and broken builds on a pull request, before Workers Builds sees the
+commit.
+
+Note that the build prerenders pages, which fetches TWDB, USGS, NWPS, USDM and
+CoCoRaHS — an upstream outage can fail a build that has nothing wrong with it,
+and the dashboard in particular fetches TWDB without a fallback. Retry the
+build; if Workers Builds is down, `npm run cf:deploy` from a workstation still
+works, since wrangler's own OAuth login is unaffected by any of this.
 
 ### The KV cache is not optional
 
