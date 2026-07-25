@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { Card } from "@/components/ui";
+import CopyButton from "@/components/CopyButton";
+
+/** Checked against its EIP-55 checksum before being published here. */
+const ETH_ADDRESS = "0x89705f4d632E93F8a466683Dc520577Ec08D37e0";
 
 const DESCRIPTION =
   "Where the data comes from, how reservoirs are matched to gages, and what the numbers mean.";
@@ -50,6 +54,24 @@ export default function AboutPage() {
               — everything that runs this site, including the scripts that
               precompute its data and the notes on why each source is treated
               the way it is.
+            </dd>
+          </div>
+          <div>
+            <dt className="font-medium">Ethereum donations</dt>
+            <dd className="text-muted">
+              If the site has been useful to you, donations are welcome. No
+              account, no sign-up, and nothing that identifies you.
+              <span className="mt-2 flex flex-wrap items-center gap-2">
+                <code className="nums text-xs sm:text-sm break-all rounded-md border border-border bg-background px-2 py-1 text-foreground">
+                  {ETH_ADDRESS}
+                </code>
+                <CopyButton value={ETH_ADDRESS} label="Copy address" />
+              </span>
+              <span className="mt-2 block text-xs">
+                Ethereum mainnet. Transfers cannot be reversed and nobody can
+                recover a send to the wrong address, so copy this one rather
+                than typing it, and check it in your wallet before confirming.
+              </span>
             </dd>
           </div>
         </dl>
