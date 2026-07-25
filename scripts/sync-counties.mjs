@@ -15,7 +15,7 @@
  * Run:  npm run sync:counties
  */
 import { writeFile, mkdir } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 
 const SOURCE =
@@ -23,10 +23,10 @@ const SOURCE =
 const TEXAS_FIPS = "48";
 const PRECISION = 1000; // three decimal places
 
-const round = (n) => Math.round(n * PRECISION) / PRECISION;
+export const round = (n) => Math.round(n * PRECISION) / PRECISION;
 
 /** Drop consecutive duplicate points left behind by rounding. */
-function compactRing(ring) {
+export function compactRing(ring) {
   const flat = [];
   let lastX = NaN;
   let lastY = NaN;
@@ -107,7 +107,13 @@ async function main() {
   );
 }
 
-main().catch((error) => {
-  console.error(error.message);
-  process.exit(1);
-});
+/*
+ * Only run when executed directly — `node scripts/<name>.mjs`. Importing this
+ * file (the tests do) must not kick off a download.
+ */
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error(error.message);
+    process.exit(1);
+  });
+}

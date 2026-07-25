@@ -18,7 +18,7 @@
  * Run:  npm run sync:history      (slow — 122 sequential downloads)
  */
 import { writeFile, mkdir, readFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 
 const BASE = "https://www.waterdatafortexas.org/reservoirs";
@@ -50,7 +50,7 @@ async function fetchCsv(url) {
 }
 
 /** Pull just (date, percent_full) out of a TWDB reservoir CSV. */
-function parse(text) {
+export function parse(text) {
   const lines = text.split("\n");
   let header = null;
   let iDate = -1;
@@ -78,7 +78,7 @@ function parse(text) {
 }
 
 /** Positional encoding: index = days since first date, value = tenths. */
-function encode(rows) {
+export function encode(rows) {
   const withValue = rows.filter((r) => r.value !== null);
   if (withValue.length < 365) return null;
 
@@ -151,7 +151,13 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error(error.message);
-  process.exit(1);
-});
+/*
+ * Only run when executed directly — `node scripts/<name>.mjs`. Importing this
+ * file (the tests do) must not kick off a download.
+ */
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error(error.message);
+    process.exit(1);
+  });
+}

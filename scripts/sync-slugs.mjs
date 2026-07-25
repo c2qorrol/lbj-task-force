@@ -10,13 +10,13 @@
  * Run when TWDB adds or renames a reservoir:  npm run sync:slugs
  */
 import { writeFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 
 const CONDITIONS = "https://www.waterdatafortexas.org/reservoirs/recent-conditions.json";
 const STATEWIDE = "https://www.waterdatafortexas.org/reservoirs/statewide";
 
-const normalize = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+export const normalize = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
 
 async function main() {
   const conditions = await (await fetch(CONDITIONS)).json();
@@ -77,7 +77,13 @@ export const ALL_SLUGS = Object.values(RESERVOIR_SLUGS);
   console.log(`Wrote ${Object.keys(map).length} reservoir slugs to ${out}`);
 }
 
-main().catch((error) => {
-  console.error(error.message);
-  process.exit(1);
-});
+/*
+ * Only run when executed directly — `node scripts/<name>.mjs`. Importing this
+ * file (the tests do) must not kick off a download.
+ */
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error(error.message);
+    process.exit(1);
+  });
+}

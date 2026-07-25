@@ -18,7 +18,7 @@
  * Run:  npm run sync:flow
  */
 import { writeFile, mkdir, readFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 
 const NLDI = "https://api.water.usgs.gov/nldi/linked-data/nwissite";
@@ -84,7 +84,7 @@ const STOPWORDS = new Set([
   "south", "east", "west", "n", "s", "e", "w", "fk", "fork", "lcra", "city",
 ]);
 
-const tokens = (name) =>
+export const tokens = (name) =>
   new Set(
     name
       .toLowerCase()
@@ -93,13 +93,13 @@ const tokens = (name) =>
       .filter((w) => w.length > 1 && !STOPWORDS.has(w)),
   );
 
-function nameOverlap(a, b) {
+export function nameOverlap(a, b) {
   const tb = tokens(b);
   for (const t of tokens(a)) if (tb.has(t)) return true;
   return false;
 }
 
-function haversineKm(aLat, aLon, bLat, bLon) {
+export function haversineKm(aLat, aLon, bLat, bLon) {
   const toRad = (d) => (d * Math.PI) / 180;
   const dLat = toRad(bLat - aLat);
   const dLon = toRad(bLon - aLon);
@@ -126,7 +126,7 @@ async function loadLakeGages() {
     .filter((g) => g.siteId && g.lat !== null);
 }
 
-function matchLakeGage(reservoir, gages) {
+export function matchLakeGage(reservoir, gages) {
   const [lon, lat] = reservoir.gauge_location?.coordinates ?? [];
   if (lat === undefined) return null;
   let best = null;
@@ -240,7 +240,13 @@ async function main() {
   );
 }
 
-main().catch((error) => {
-  console.error(error.message);
-  process.exit(1);
-});
+/*
+ * Only run when executed directly — `node scripts/<name>.mjs`. Importing this
+ * file (the tests do) must not kick off a download.
+ */
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error(error.message);
+    process.exit(1);
+  });
+}

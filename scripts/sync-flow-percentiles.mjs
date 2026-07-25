@@ -19,7 +19,7 @@
  * Run:  npm run sync:percentiles      (~60 batched requests, a few minutes)
  */
 import { writeFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 
 const IV = "https://waterservices.usgs.gov/nwis/iv/";
@@ -69,7 +69,7 @@ async function getDischargeSites() {
  * Parse one RDB response into per-site, per-month threshold arrays.
  * RDB: `#` comments, a header row, a column-width row, then data rows.
  */
-function parseRdb(text, out) {
+export function parseRdb(text, out) {
   const lines = text.split("\n").filter((l) => l !== "" && !l.startsWith("#"));
   if (lines.length < 3) return;
   const header = lines[0].split("\t");
@@ -88,7 +88,15 @@ function parseRdb(text, out) {
     const years = Number(cells[iCount]);
     if (!site || !(month >= 1 && month <= 12) || !(years >= MIN_YEARS)) continue;
 
-    const thresholds = iP.map((i) => Number(cells[i]));
+    /*
+     * An empty cell is a missing threshold, not zero — and `Number("")` is 0,
+     * which sails through the finite check below and would publish a 0 as a
+     * real percentile. A 0 p50 makes every trickle read as "normal or better".
+     */
+    const thresholds = iP.map((i) => {
+      const raw = cells[i]?.trim();
+      return raw === undefined || raw === "" ? NaN : Number(raw);
+    });
     if (thresholds.some((t) => !Number.isFinite(t))) continue;
 
     const bySite = out.get(site) ?? new Map();
@@ -99,14 +107,14 @@ function parseRdb(text, out) {
   }
 }
 
-const median = (xs) => {
+export const median = (xs) => {
   const s = [...xs].sort((a, b) => a - b);
   const mid = Math.floor(s.length / 2);
   return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
 };
 
 /** Keep the JSON small: sub-unit precision means nothing at classification time. */
-const compact = (v) => (v >= 100 ? Math.round(v) : Math.round(v * 10) / 10);
+export const compact = (v) => (v >= 100 ? Math.round(v) : Math.round(v * 10) / 10);
 
 async function main() {
   const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -155,7 +163,13 @@ async function main() {
   );
 }
 
-main().catch((error) => {
-  console.error(error.message);
-  process.exit(1);
-});
+/*
+ * Only run when executed directly — `node scripts/<name>.mjs`. Importing this
+ * file (the tests do) must not kick off a download.
+ */
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error(error.message);
+    process.exit(1);
+  });
+}

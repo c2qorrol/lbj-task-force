@@ -25,11 +25,17 @@ list of things that are easy to get wrong.
 npx tsc --noEmit && npm run lint && npm test && npm run cf:build
 ```
 
-`npm test` (vitest, `tests/`) covers the upstream parsers and the pure
-calculations they feed. It never touches the network: every case hands the
-parser a fixture reproducing a real quirk of the feed. **If you change a
-parser, add the malformed input that motivated the change** — the failure mode
-that matters here is a silently wrong number, not a crash.
+`npm test` (vitest, `tests/`) covers the upstream parsers, the pure
+calculations they feed, and the sync scripts' parsing and matching logic. It
+never touches the network: every case hands the code a fixture reproducing a
+real quirk of the feed. **If you change a parser, add the malformed input that
+motivated the change** — the failure mode that matters here is a silently
+wrong number, not a crash.
+
+Watch for one bug shape in particular, which has now appeared twice:
+`Number(null)` and `Number("")` are both `0`, so a guard like
+`Number.isFinite(Number(cell))` accepts an absent value and publishes it as a
+zero. Check for null and empty string explicitly before converting.
 
 `cf:build` is the real Workers build, and catches Satori and runtime
 incompatibilities that `next dev` cannot.
@@ -54,7 +60,8 @@ too much to hold off-platform.
 - **Precomputed data is committed and never regenerates at request time.**
   `src/data/*.json` and `public/history/*.json` come only from
   `scripts/sync-*.mjs`. A stale checkout serves stale normals rather than
-  failing.
+  failing. Each script runs `main()` only when executed directly, so its
+  parsers can be imported and tested — keep that guard if you add one.
 - **Optional enrichment must never break a page.** Wrap secondary upstreams in
   `.catch(() => fallback)`, and stream slow panels through `<Suspense>` so a
   cold fetch cannot hold the document.

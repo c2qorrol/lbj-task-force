@@ -18,7 +18,7 @@
  * Run:  npm run sync:usace
  */
 import { writeFile, mkdir, readFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 
 const CWMS = "https://cwms-data.usace.army.mil/cwms-data";
@@ -40,7 +40,7 @@ async function getJson(url) {
   return res.json();
 }
 
-function haversineKm(aLat, aLon, bLat, bLon) {
+export function haversineKm(aLat, aLon, bLat, bLon) {
   const toRad = (d) => (d * Math.PI) / 180;
   const dLat = toRad(bLat - aLat);
   const dLon = toRad(bLon - aLon);
@@ -56,7 +56,7 @@ function haversineKm(aLat, aLon, bLat, bLon) {
  * Excludes tailwater and alternate-datum series outright, prefers revised data
  * over raw telemetry, and prefers finer intervals.
  */
-function rankSeries(name) {
+export function rankSeries(name) {
   if (!/\.Elev\.Inst\./i.test(name)) return -1;
   if (/Tailwater|Elev-Alt|Elev-Tailwater|Forecast/i.test(name)) return -1;
 
@@ -242,7 +242,13 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error(error.message);
-  process.exit(1);
-});
+/*
+ * Only run when executed directly — `node scripts/<name>.mjs`. Importing this
+ * file (the tests do) must not kick off a download.
+ */
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error(error.message);
+    process.exit(1);
+  });
+}
