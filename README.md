@@ -5,6 +5,17 @@ Statewide water-level monitoring for Texas reservoirs. Similar in spirit to
 reservoirs in the state rather than the six Highland Lakes, and joining
 authoritative daily storage figures to real-time gage readings.
 
+**Live: https://lbjtaskforce.com**
+
+This file is the long-form reference: it explains why each subsystem works the
+way it does. Alongside it —
+
+| | |
+| --- | --- |
+| [`AGENTS.md`](AGENTS.md) | Conventions and traps, for anyone (human or agent) editing the code |
+| [`docs/data-sources.md`](docs/data-sources.md) | Every upstream feed, its cache window and its quirks |
+| [`docs/roadmap.md`](docs/roadmap.md) | What is worth building next, and why |
+
 ## Data sources
 
 | Source | What it provides | Cadence | Coverage |
@@ -280,15 +291,21 @@ the marker colour — "in flood" beats "above normal" as the thing to surface.
 
 ### River forecasts
 
-NWS issues actual stage/flow forecast series (~5 days, 3-hour steps) for a
-subset of gauges. On lake pages, `ForecastPanel` matches the lake's own gauge
-and the precomputed inflow/outflow gages to NWPS points by the same 1 km
-position join, and charts any forecasts found (`/gauges/{lid}/stageflow/
-forecast`, `getGaugeForecast()` in `src/lib/nwps.ts`) with the forecast peak
-called out. Dashed line on purpose: every other series on the page is an
-observation, and line style is what keeps a prediction from reading as one.
-The panel streams inside Suspense and renders nothing for most lakes; flow is
-published in kcfs and converted, and -999 sentinels become nulls.
+NWS issues actual stage/flow forecast series (~5 days, 3-hour steps) for most
+of its gauges — 768 of the 1,039 in the Texas bounding box when last counted.
+On lake pages, `ForecastPanel` matches the lake's own gauge and the precomputed
+inflow/outflow gages to NWPS points by the same 1 km position join, and charts
+any forecasts found (`/gauges/{lid}/stageflow/forecast`, `getGaugeForecast()`
+in `src/lib/nwps.ts`) with the forecast peak called out. Dashed line on
+purpose: every other series on the page is an observation, and line style is
+what keeps a prediction from reading as one.
+
+Whether the panel appears is therefore decided by proximity rather than
+availability — plenty of lakes have no forecast gauge within the join, and the
+panel simply renders nothing. It streams inside Suspense so that neither the
+gauge list nor the per-gauge forecast requests can hold the page. Flow arrives
+in kcfs and is converted; `-999` sentinels become nulls; and a gauge with no
+active forecast answers 200 with an empty array rather than 404.
 
 ## Rainfall
 

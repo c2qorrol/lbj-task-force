@@ -14,11 +14,13 @@ import { fmtNumber, fmtTimestamp } from "@/lib/format";
 /**
  * Official NWS river forecasts around a reservoir.
  *
- * NWS issues stage/flow forecasts for a subset of gauges (roughly 200 of the
- * ~1,000 in and around Texas). Where the inflow reach, the reach below the
- * dam, or the lake's own gauge is one of them, this shows the next ~5 days —
- * the only genuinely predictive series on the page, everything else being
- * observation or extrapolation.
+ * NWS issues stage/flow forecasts for most of its gauges — 768 of the 1,039
+ * in and around Texas when last counted — so what decides whether this panel
+ * appears is proximity, not availability: a forecast gauge has to sit within
+ * the 1 km join of the lake's own gauge, the inflow reach, or the reach below
+ * the dam. Where one does, this shows the next ~5 days — the only genuinely
+ * predictive series on the page, everything else being observation or
+ * extrapolation.
  *
  * Rendered inside Suspense: it needs the NWPS gauge list plus one request per
  * forecast point, and enrichment must never hold the rest of the page.
