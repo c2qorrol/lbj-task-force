@@ -30,6 +30,32 @@ export default function AboutPage() {
       </div>
 
       <Card>
+        <h2 className="font-semibold mb-2">Creators</h2>
+        <p className="text-sm text-muted">
+          This site was built by true Saint Hedwig patriots and pure-hearted
+          cyber angels.
+        </p>
+        <dl className="mt-3 space-y-3 text-sm">
+          <div>
+            <dt className="font-medium">Source code</dt>
+            <dd className="text-muted">
+              <a
+                href="https://github.com/c2qorrol/lbj-task-force"
+                target="_blank"
+                rel="noreferrer"
+                className="text-accent hover:underline"
+              >
+                github.com/c2qorrol/lbj-task-force
+              </a>{" "}
+              — everything that runs this site, including the scripts that
+              precompute its data and the notes on why each source is treated
+              the way it is.
+            </dd>
+          </div>
+        </dl>
+      </Card>
+
+      <Card>
         <h2 className="font-semibold mb-2">Data sources</h2>
         <dl className="space-y-3 text-sm">
           <div>
