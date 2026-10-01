@@ -585,11 +585,11 @@
     "lakeGage": "08065330",
     "inflow": null,
     "outflow": {
-      "siteId": "08065350",
-      "siteName": "Trinity Rv nr Crockett, TX",
-      "lat": 31.33851319,
-      "lon": -95.6563407,
-      "km": 9.2
+      "siteId": "08065500",
+      "siteName": "Trinity Rv nr Midway, TX",
+      "lat": 31.0746349,
+      "lon": -95.6994155,
+      "km": 38.1
     }
   },
   "hubbard-creek": {
@@ -775,11 +775,11 @@
   "livingston": {
     "lakeGage": "08066190",
     "inflow": {
-      "siteId": "08065350",
-      "siteName": "Trinity Rv nr Crockett, TX",
-      "lat": 31.33851319,
-      "lon": -95.6563407,
-      "km": 99.7
+      "siteId": "08065500",
+      "siteName": "Trinity Rv nr Midway, TX",
+      "lat": 31.0746349,
+      "lon": -95.6994155,
+      "km": 82.1
     },
     "outflow": {
       "siteId": "08066250",
